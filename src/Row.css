@@ -1,0 +1,27 @@
+.row__posters {
+  /* Places images in row rather from column */
+  display: flex;
+  /* horizontal scrolling*/
+  overflow-y: hidden;
+  overflow-x: scroll;
+  /* padding stops cropping of images when they grow */
+  padding: 20px;
+}
+
+.row__posters::-webkit-scrollbar {
+  /* This says to brows to stop displaying element but keep the functionality */
+  display: none;
+}
+
+.row__poster {
+  object-fit: contain;
+  width: 100%;
+  max-height: 100px;
+  margin: 10px;
+  transition: transform 450ms;
+}
+
+.row__poster:hover {
+  /* transform with transition gives slow image grow effect*/
+  transform: scale(1.08);
+}
