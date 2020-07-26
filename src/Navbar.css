@@ -5,11 +5,8 @@
   padding: 20px;
   height: 25px;
 
-  /* add z header because its header  */
+  /* add z header because its a header  */
   z-index: 1;
-
-  display: flex;
-  justify-content: space-between;
 
   /* Animation in top bar */
   transition-timing-function: ease-in;
@@ -29,6 +26,7 @@
 
 .navbar__avatar {
   position: fixed;
+  top: 15px;
   right: 20px;
   object-fit: contain;
   width: 30px;
