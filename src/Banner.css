@@ -1,8 +1,6 @@
 .banner {
-  background-size: "cover";
-  background-position: "center center";
-  color: white;
   height: 448px;
+  color: white;
 }
 
 .banner__contents {
@@ -45,7 +43,7 @@
 }
 
 .banner--fadeBottom {
-  height: 7.4 rem;
+  height: 7.4rem;
   background-image: linear-gradient(
     180deg,
     transparent,
