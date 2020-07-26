@@ -8,7 +8,9 @@ const baseUrlImage = "https://image.tmdb.org/t/p/original/";
 
 function Row({ title, fetchUrl, isLargeRow }) {
   const [movies, setMovies] = useState([]);
-  const [trailerUrl, setTrailerUrl] = useState(false);
+  const [trailerUrl, setTrailerUrl] = useState("");
+
+  console.table(movies);
 
   // snippet of code which runs based on specific condition
   useEffect(() => {
@@ -23,7 +25,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
 
   const opts = {
     height: "390",
-    width: "640",
+    width: "100%",
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
@@ -34,8 +36,9 @@ function Row({ title, fetchUrl, isLargeRow }) {
     if (trailerUrl) {
       setTrailerUrl("");
     } else {
-      movieTrailer(movie?.name || "")
+      movieTrailer(movie?.title || "")
         .then((url) => {
+          // Below snippet find out value of v in : https://www.youtube.com/watch?v=XtMThy8QKqU&t=10520s
           const urlParams = new URLSearchParams(new URL(url).search);
           setTrailerUrl(urlParams.get("v"));
         })
@@ -59,11 +62,11 @@ function Row({ title, fetchUrl, isLargeRow }) {
               /** ? is for if statement */
               isLargeRow ? movie.poster_path : movie.backdrop_path
             }`}
-            alt={movie.name}
+            alt={movie.title}
           />
         ))}
       </div>
-      {trailerUrl && <YouTube videoId={trailerUrl} oprs={opts} />}
+      {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
     </div>
   );
 }
