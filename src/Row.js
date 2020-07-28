@@ -3,6 +3,7 @@ import axios from "./axios";
 import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
 import "./Row.css";
+import Modal from "react-bootstrap/Modal"
 
 const baseUrlImage = "https://image.tmdb.org/t/p/original/";
 
@@ -66,7 +67,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
           />
         ))}
       </div>
-      {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
+      {trailerUrl && <Modal centered> <YouTube videoId={trailerUrl} opts={opts} /> </Modal> }
     </div>
   );
 }
