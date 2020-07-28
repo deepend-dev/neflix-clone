@@ -5,7 +5,7 @@ import movieTrailer from "movie-trailer";
 import "./Row.css";
 import Modal from "react-bootstrap/Modal"
 
-const baseUrlImage = "https://image.tmdb.org/t/p/original/";
+const baseUrlImage = "https://image.tmdb.org/t/p/original";
 
 function Row({ title, fetchUrl, isLargeRow }) {
   const [movies, setMovies] = useState([]);
@@ -37,7 +37,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
     if (trailerUrl) {
       setTrailerUrl("");
     } else {
-      movieTrailer(movie?.title || "")
+      movieTrailer(movie?.name || movie?.title || movie?.original_name || "")
         .then((url) => {
           // Below snippet find out value of v in : https://www.youtube.com/watch?v=XtMThy8QKqU&t=10520s
           const urlParams = new URLSearchParams(new URL(url).search);
@@ -63,7 +63,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
               /** ? is for if statement */
               isLargeRow ? movie.poster_path : movie.backdrop_path
             }`}
-            alt={movie.title}
+            alt={movie?.name || movie?.title || movie?.original_name}
           />
         ))}
       </div>
