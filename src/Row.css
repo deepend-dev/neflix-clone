@@ -14,7 +14,7 @@
 }
 
 .row__posters::-webkit-scrollbar {
-  /* This says to brows to stop displaying element but keep the functionality */
+  /* This says to rows to stop displaying element but keep the functionality */
   display: none;
 }
 
@@ -38,4 +38,27 @@
 .row__posterLarge:hover {
   transform: scale(1.09);
   opacity: 1;
+}
+
+.modal__pop {
+  height: 392px;
+  width: 697px;
+  top: "50%";
+  left: "50%";
+  right: "auto";
+  bottom: "auto";
+  margin-right: "-50%";
+  transform: translate(-50%, -50%);
+}
+
+.modal__youtube {
+  height: 392px;
+  width: 697px;
+  top: "50%";
+  left: "50%";
+  right: "auto";
+  bottom: "auto";
+  margin-right: "-50%";
+  transform: translate(-50%, -50%);
+  object-fit: contain;
 }

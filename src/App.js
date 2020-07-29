@@ -7,7 +7,7 @@ import Navbar from "./Navbar";
 
 function App() {
   return (
-    <div className="app">
+    <div className="app" id="root">
       <Navbar />
       <Banner />
       <Row

@@ -2,16 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "./axios";
 import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
+import Modal from "react-modal";
 import "./Row.css";
-import Modal from "react-bootstrap/Modal"
 
 const baseUrlImage = "https://image.tmdb.org/t/p/original";
 
 function Row({ title, fetchUrl, isLargeRow }) {
   const [movies, setMovies] = useState([]);
   const [trailerUrl, setTrailerUrl] = useState("");
-
-  console.table(movies);
 
   // snippet of code which runs based on specific condition
   useEffect(() => {
@@ -25,8 +23,8 @@ function Row({ title, fetchUrl, isLargeRow }) {
   }, [fetchUrl]);
 
   const opts = {
-    height: "390",
-    width: "100%",
+    // height: "390",
+    // width: "100%",
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
@@ -45,7 +43,19 @@ function Row({ title, fetchUrl, isLargeRow }) {
         })
         .catch((error) => console.log(error));
     }
+    openModal();
   };
+
+  Modal.setAppElement("#root");
+
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   return (
     <div className="row">
@@ -67,7 +77,16 @@ function Row({ title, fetchUrl, isLargeRow }) {
           />
         ))}
       </div>
-      {trailerUrl && <Modal centered> <YouTube videoId={trailerUrl} opts={opts} /> </Modal> }
+      {trailerUrl && (
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          centered
+          className="modal__pop"
+        >
+          <YouTube videoId={trailerUrl} opts={opts} />
+        </Modal>
+      )}
     </div>
   );
 }
